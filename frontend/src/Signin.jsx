@@ -1,9 +1,21 @@
-import React from 'react'
+import React,{ useState } from 'react'
 import NavBar from './NavBar'
 import { Mail } from 'lucide-react';
 import { KeyRound } from 'lucide-react';
+import { Eye } from "lucide-react";
+import { EyeOff } from "lucide-react"
 
 const Signin = () => {
+
+    const [showPass,setShowPassword] = useState(false);
+
+    const handlePassword =()=>{
+    setShowPassword((password)=>!password);
+
+  }
+
+  
+
   return (
     <div className='w-screen flex flex-col items-center'>
       <NavBar/>
@@ -13,14 +25,25 @@ const Signin = () => {
        <form action="" className='w-[80%] my-5'>
         <div className='w-[95%] mb-4'>
             <p className='text-sm text-gray-700 font-semibold pb-1.5 '>Email Address</p>
-            <div>
-                <input className='border-1 border-gray-300 bg-gray-50 w-full  rounded-md py-3 px-3 focus:outline-none focus:border-black text-sm focus:border-1.8 duration-200' type="text" placeholder='sample@gmail.com' />
+            <div className='relative'>
+                <input 
+                    className='pl-12 border-1 border-gray-300 bg-gray-50 w-full  rounded-md py-3 px-3 focus:outline-none focus:border-black text-sm focus:border-1.8 duration-200' 
+                    type="text" 
+                    placeholder='sample@gmail.com' />
+                <Mail className='absolute top-4 left-3 text-gray-400' />
             </div>
         </div>
         <div className='w-[95%] '>
             <p className='text-sm text-gray-700 font-semibold pb-1.5'>Password</p>
             <div>
-                <input className='border-1 border-gray-300 bg-gray-50 w-full  rounded-md py-3 px-3 focus:outline-none focus:border-black focus:border-1.8 text-sm duration-200' type="text" placeholder='sample123' />
+                <div className='relative'>
+                        <input 
+                            className='pl-12 border-1 border-gray-300 bg-gray-50 w-full  rounded-md py-3 px-3 focus:outline-none focus:border-black focus:border-1.8 text-sm duration-200' 
+                            type={showConfirmPassword?"password":"text"} 
+                            placeholder='sample123' />
+                        <KeyRound className='absolute top-4 left-3 text-gray-400 '/>
+                    <span onClick={handlePassword}>{showPass ? <Eye className='absolute right-3 top-4'/> : <EyeOff className='absolute right-3 top-4'/>}</span>
+                </div>
             </div>
         </div >
         <div className=' flex justify-between w-full mt-4'>
